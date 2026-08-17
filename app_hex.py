@@ -28,6 +28,29 @@ st.set_page_config(
     page_icon="hexagon" if hasattr(st, "page_icon") else "🔷",
     layout="wide",
     initial_sidebar_state="collapsed",
+    menu_items=None,
+)
+
+# Force the Streamlit theme to a light base so custom colors always win,
+# regardless of the visitor's OS/browser dark-mode preference.
+st.markdown(
+    """
+<script type="text/javascript">
+(function() {
+    try {
+        localStorage.setItem("stActiveTheme-VeriNews", JSON.stringify({
+            name: "Light",
+            primaryColor: "#7C3AED",
+            backgroundColor: "#FAFAF8",
+            secondaryBackgroundColor: "#F7F7F5",
+            textColor: "#111827",
+            font: "sans serif"
+        }));
+    } catch (e) {}
+})();
+</script>
+""",
+    unsafe_allow_html=True,
 )
 
 # ---------------------------------------------------------------- Theme CSS
@@ -41,6 +64,38 @@ st.markdown("""
         padding-left: 0px;
         padding-right: 0px;
         max-width: 100%;
+    }
+
+    /* ---------- Lock the Streamlit base to light ---------- */
+    .appview-container, .main {
+        background-color: #FAFAF8 !important;
+    }
+    .appview-container .main, .appview-container .main * {
+        color: #111827 !important;
+    }
+    .appview-container .stMarkdown p, .appview-container .stText {
+        color: #374151 !important;
+    }
+
+    /* ---------- Guard against OS/browser dark mode (applies always, overrides
+        Streamlit's dark theme variables on any element it colors) ---------- */
+    .appview-container .main, .appview-container .main * {
+        color: #111827 !important;
+    }
+    .stTextArea textarea, .stTextInput input {
+        background: #F9F9F7 !important;
+        color: #111827 !important;
+        border-color: #E8E8E5 !important;
+    }
+    .stButton button[kind="primary"] {
+        background: #111827 !important;
+        color: #FFFFFF !important;
+    }
+    div[data-testid="stColumn"], div[data-testid="stVerticalBlock"],
+    .element-container { background-color: transparent !important; }
+    /* Streamlit's dark theme paints the body and appview bg itself */
+    body, .appview-container {
+        background-color: #FAFAF8 !important;
     }
 
     /* ---------- Compact centered content wrapper ---------- */
