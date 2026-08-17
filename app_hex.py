@@ -43,11 +43,18 @@ st.markdown("""
         max-width: 100%;
     }
 
+    /* ---------- Compact centered content wrapper ---------- */
+    .hex-wrap {
+        max-width: 1120px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
     /* ---------- Header (Hex-style dark bar) ---------- */
     .hex-header {
         background: #0F1114;
         border-bottom: 1px solid #23262E;
-        padding: 18px 48px;
+        padding: 16px 40px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -76,7 +83,7 @@ st.markdown("""
     /* ---------- Hero ---------- */
     .hex-hero {
         background: linear-gradient(180deg, #F4F3F0 0%, #FAFAF8 100%);
-        padding: 56px 48px 28px 48px;
+        padding: 44px 40px 24px 40px;
         text-align: center;
     }
     .hex-eyebrow {
@@ -90,7 +97,7 @@ st.markdown("""
     .hex-title {
         font-family: 'Playfair Display', serif;
         font-style: italic;
-        font-size: 46px;
+        font-size: 42px;
         color: #111827;
         line-height: 1.15;
         margin-bottom: 4px;
@@ -251,24 +258,32 @@ st.markdown("""
 # ---------------------------------------------------------------- Header
 st.markdown("""
 <div class="hex-header">
-    <div class="hex-logo">Veri<em>News</em><span style="color: #A78BFA; font-family: 'Inter', sans-serif; font-weight: 700;">.</span></div>
-    <div class="hex-tagline">AI-powered fake news detection &nbsp;·&nbsp; Random Forest + TF-IDF</div>
+    <div class="hex-wrap">
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+            <div class="hex-logo">Veri<em>News</em><span style="color: #A78BFA; font-family: 'Inter', sans-serif; font-weight: 700;">.</span></div>
+            <div class="hex-tagline">AI-powered fake news detection &nbsp;·&nbsp; Random Forest + TF-IDF</div>
+        </div>
+    </div>
 </div>
 """, unsafe_allow_html=True)
 
 # ---------------------------------------------------------------- Hero
 st.markdown("""
 <div class="hex-hero">
-    <div class="hex-eyebrow">machine learning · text classification</div>
-    <div class="hex-title">Know if a story is <em>trustworthy</em>,<br><strong>before you share it.</strong></div>
+    <div class="hex-wrap">
+        <div class="hex-eyebrow">machine learning · text classification</div>
+        <div class="hex-title">Know if a story is <em>trustworthy</em>,<br><strong>before you share it.</strong></div>
     <div class="hex-subtitle">
         Paste any news article below. Our model reads the language patterns and returns a
         verdict with a confidence score — in seconds.
     </div>
+    </div>
 </div>
+<div style="height: 14px;"></div>
 """, unsafe_allow_html=True)
 
 # ---------------------------------------------------------------- Input card
+st.markdown('<div class="hex-wrap">', unsafe_allow_html=True)
 col_left, col_right = st.columns([1.5, 1])
 
 with col_left:
@@ -375,19 +390,19 @@ with col_right:
 
     st.markdown('</div></div>', unsafe_allow_html=True)
 
-st.markdown(
-    '<div style="height: 8px;"></div><hr class="hex-divider">',
-    unsafe_allow_html=True,
-)
+st.markdown('</div>', unsafe_allow_html=True)
 
 # ---------------------------------------------------------------- Model info
 st.markdown("""
-<div style="padding: 0 4px;">
-    <div class="hex-card-label" style="padding-left: 6px;">// about this model</div>
-    <div class="hex-card-title" style="padding-left: 6px; margin-bottom: 18px;">How it works</div>
+<div class="hex-wrap">
+    <div style="padding: 0 4px; margin-top: 26px;">
+        <div class="hex-card-label" style="padding-left: 6px;">// about this model</div>
+        <div class="hex-card-title" style="padding-left: 6px; margin-bottom: 18px;">How it works</div>
+    </div>
 </div>
 """, unsafe_allow_html=True)
 
+st.markdown('<div class="hex-wrap">', unsafe_allow_html=True)
 c1, c2, c3 = st.columns(3)
 with c1:
     st.markdown("""
@@ -415,3 +430,4 @@ st.markdown("""
     event is true. Short inputs (headlines only) may produce less reliable results.
 </p>
 """, unsafe_allow_html=True)
+st.markdown('</div>', unsafe_allow_html=True)
